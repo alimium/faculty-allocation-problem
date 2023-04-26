@@ -5,6 +5,7 @@ __pycache__/
 
 # Scratch books and notes
 *.scratchbook.ipynb
+*.scratchbook.py
 
 # OS Generated Stuff
 .DS_Store/
