@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Scratch books and notes
+*.scratchbook.ipynb
+
 # OS Generated Stuff
 .DS_Store/
 .DS_Store
