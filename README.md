@@ -114,9 +114,9 @@ Consider $\delta_{i,j}=1$ which means student $i$ is allocated to professor $j$.
 1. The student $j^\prime$ will be allocated to the same professor. This term is crucial if we want to write a general model that works on non heterogenous attributes for the professors or the students. i.e. dynamic capacity for the professors
 2. The student $j^\prime$ is allocates to another professor (i.e. professor $i^\prime$) who prioritizes student $j^\prime$ over student $j$. In other words, $p_{i^{'}, j^{'} }\le p_{i, j^{'}}$
 
-We linearize this constraint as follows. Note that because of (Constraint 2), the right hand side of the above implication is either 0 or 1. therefore, $\delta_{i j^{'}}+\sum_{\substack{i^{'} \\ p_{i^{'}, j^{'} } \le p_{i, j^{'}} \\ }} \delta_{i^{'} j^{'}} \leq 1$ is trivial.
+We linearize this constraint as follows. Note that because of (Constraint 2), the right hand side of the above implication is either 0 or 1. therefore, $\delta_{i j^{'}}+\sum_{i^{'} \; , \; p_{i^{'}, j^{'} } \le p_{i, j^{'}}} \delta_{i^{'} j^{'}} \leq 1$ is trivial.
 
-$$\delta_{i j^{'}}+\sum_{\substack{ i^{'} \\ p_{i^{'}, j^{'} }\le p_{i, j^{'}} \\ }} \delta_{i^{'} j^{'}} \ge 1-M(1-\delta _{i j}) \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} } \le p_{i j}$$
+$$\delta_{i j^{'}}+\sum_{i^{'} \; , \; p_{i^{'}, j^{'} }\le p_{i, j^{'}}} \delta_{i^{'} j^{'}} \ge 1-M(1-\delta _{i j}) \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} } \le p_{i j}$$
 
 $$\delta_{i j^{'}}+\sum_{\substack{i^{'} \\ p_{i^{'}, j^{'} }\le p_{i, j^{'}} \\ }} \delta_{i^{'} j^{'}} \ge \delta _{i j} \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
 
