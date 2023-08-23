@@ -6,6 +6,12 @@ Amirkabir University of Technology, Spring 2023
 
 ---
 
+> ### Dependencies
+> *This project requires `pyomo` and `glpk` solver. You can install them using*  
+> ```bash
+> $ conda install -c conda-forge pyomo glpk
+> ```
+
 ## Problem Definition
 A faculty has $n$ professors and $m$ higher education student. Each professor has a specific capacity in supervising students and exactly that number of students must be allocated to them. Professors and students can both review each other's resume and on that basis, they rate each other with a number. The goal is to allocate students to professors in a way that maximizes satisfaction within the system. We formally describe the problem in the following section.
 
@@ -99,6 +105,7 @@ where $u_{i,j}$ and $\lambda_{i,j,j^\prime}$ are non negative integer variables.
 
 #### Soft Constraint 1
 $$\sum_{\substack{ i^\prime \neq i \\ q_{i,j} \lt q_{i^{'},j}}} \delta_{i^{'},j} = 0 \hspace{1cm} \forall i,j$$
+
 In this constraint we ensure that for all students that are allocated to a professor (i.e. professor $i$) no other professor $i^\prime$ is allocated to the student where the student's priority on professor $i^\prime$ is better. In other words, we would like to allocate the first priority of that student to them. However, this might not be possible. (i.e. two students' first priority is the same professor) This will result in a violation of the constraint which we will penalize with $u_{i,j}$ as follows.
 
 $$\sum_{\substack{ i^{'} \neq i \\ q_{i,j} \lt q_{i^{'},j} \\ }} \delta_{i^{'},j} - u_{i,j} = 0 \hspace{1cm} \forall i,j$$
@@ -106,23 +113,21 @@ $$\sum_{\substack{ i^{'} \neq i \\ q_{i,j} \lt q_{i^{'},j} \\ }} \delta_{i^{'},j
 Therefore, upon violation, $u_{i,j} \gt 0$. However, we know from (Constraint 2) that only one professor can be allocated to a student which means $u_{i,j} \in \set{0,1}$.
 
 #### Soft Constraint 2
-
-$$\delta _{i j} =1 \implies \delta_{i j^{'}}+\sum_{
-i^{'} , p_{i^{'}, j^{'} }\le p_{i, j^{'}}} \delta_{i^{'} j^{'}} =1 \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
+$$\delta_{i j}=1 \implies \delta_{i j^{'}}+\sum_{i^{'} , p_{i^{'}, j^{'} }\le p_{i, j^{'}}} \delta_{i^{'} j^{'}} =1 \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
 
 Consider $\delta_{i,j}=1$ which means student $i$ is allocated to professor $j$. This is a good allocation if all other students $j^\prime$ who were given higher priority by the professor hold in either of the following conditions:
 1. The student $j^\prime$ will be allocated to the same professor. This term is crucial if we want to write a general model that works on non heterogenous attributes for the professors or the students. i.e. dynamic capacity for the professors
 2. The student $j^\prime$ is allocates to another professor (i.e. professor $i^\prime$) who prioritizes student $j^\prime$ over student $j$. In other words, $p_{i^{'}, j^{'} }\le p_{i, j^{'}}$
 
-We linearize this constraint as follows. Note that because of (Constraint 2), the right hand side of the above implication is either 0 or 1. therefore, $\delta_{i j^{'}}+\sum_{i^{'} \; , \; p_{i^{'}, j^{'} } \le p_{i, j^{'}}} \delta_{i^{'} j^{'}} \leq 1$ is trivial.
+We linearize this constraint as follows. Note that because of (Constraint 2), the right hand side of the above implication is either 0 or 1. therefore, $\delta_{i j^{'}}+\sum_{i^{'} , p_{i^{'}, j^{'} } \le p_{i, j^{'}}} \delta_{i^{'} j^{'}} \leq 1$ is trivial.
 
-$$\delta_{i j^{'}}+\sum_{i^{'} \; , \; p_{i^{'}, j^{'} }\le p_{i, j^{'}}} \delta_{i^{'} j^{'}} \ge 1-M(1-\delta _{i j}) \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} } \le p_{i j}$$
+$$\delta_{i j^{'}}+\sum_{i^{'} , p_{i^{'}, j^{'}}\le p_{i, j^{'}}} \delta_{i^{'} j^{'}} \ge 1-M(1-\delta_{i j}) \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} } \le p_{i j}$$
 
-$$\delta_{i j^{'}}+\sum_{\substack{i^{'} \\ p_{i^{'}, j^{'} }\le p_{i, j^{'}} \\ }} \delta_{i^{'} j^{'}} \ge \delta _{i j} \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
+$$\delta_{i j^{'}}+\sum_{i^{'} , p_{i^{'}, j^{'} } \le p_{i, j^{'}}} \delta_{i^{'} j^{'}} \ge \delta_{i j} \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
 
 We then penalize its violation by adding an integer variable to the left hand side of the constraint. Like (Soft Constraint 1), we can conduct that $\lambda_{i,j,j^\prime}\in \set{0,1}$
 
-$$\delta_{i j^{'}}+\sum_{\substack{i^{'} \\ p_{i^{'}, j^{'} }\le p_{i, j^{'}} \\ }}\delta_{i^{'} j^{'}} + \lambda_{i,j,j^{'}} \ge \delta _{i j} \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
+$$\delta_{i j^{'}}+\sum_{i^{'} , p_{i^{'}, j^{'} }\le p_{i, j^{'}}} \delta_{i^{'} j^{'}} + \lambda_{i,j,j^{'}} \ge \delta_{i j} \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
 
 Using the proposed model, we obtain the following results. As we can see this approach achieves some improvement over the previous one. It can be seen that the number of (1,1) pairs has increased at the cost of the increase of some worse pair allocations.
 
