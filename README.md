@@ -9,22 +9,29 @@ Amirkabir University of Technology, Spring 2023
 ## Problem Definition
 A faculty has $n$ professors and $m$ higher education student. Each professor has a specific capacity in supervising students and exactly that number of students must be allocated to them. Professors and students can both review each other's resume and on that basis, they rate each other with a number. The goal is to allocate students to professors in a way that maximizes satisfaction within the system. We formally describe the problem in the following section.
 
-### Mathematical Modeling
+## Mathematical Modeling
 We propose two different approaches in. defining satisfaction. The first approach is to model satisfaction as a mathematical function. This will provide a quantitative measure for the concept. We provide three objective functions for this approach. We then introduce a new approach for measuring satisfaction as minimizing allocations that are less preferred. We model this type of behavior as soft constraints. 
 
-First, we will write common model components and then build upon them in later sections.
-> [!example] Model Summary
->  ### Sets
->  $\mathbb{I} = \set{1,\dots,n}$ : The set of professors.
->  $\mathbb{J} = \set{1,\dots,m}$ : The set of students.
->  ---
->  ### Parameters
->  $p_{i,j} \in \set{1,\dots,m}$ *(Integer)* : The score of professor $i$ to student $j$.
->  $q_{i,j} \in \set{1,\dots,n}$ *(Integer)* : The score of student $j$ to professor $i$.
->  $Cap_i$ *(Integer)* : Research capacity of professor $i$
->  ---
->  ### Variables
->  *(Binary)*: $\delta_{i,j} = \left \{ \begin{array}{cl} 1 & : \text{ if professor }i \text{ and student }j \text{ work together} \\0 & : \text{ o.w.}\end{array} \right.$
+First, we will write common model components and then build on them in later sections.
+
+### Model Summary
+> ### Sets
+>$\mathbb{I} = \set{1,\dots,n}$ : The set of professors.  
+>$\mathbb{J} = \set{1,\dots,m}$ : The set of students.
+>
+>---
+>
+>### Parameters
+>$p_{i,j} \in \set{1,\dots,m}$ *(Integer)* : The score of professor $i$ to student $j$.  
+>$q_{i,j} \in \set{1,\dots,n}$ *(Integer)* : The score of student $j$ to professor $i$.  
+>$Cap_i$ *(Integer)* : Research capacity of professor $i$
+>
+>---
+>
+>### Variables
+>
+>*(Binary)*: $\delta_{i,j} = \left \{ \begin{array}{cl} 1 & : \text{ if professor }i \text{ and student }j \text{ work together} \\0 & : \text{ o.w.}\end{array} \right.$
+>
 >  ---
 >  ### Constraints
 >  1. **Research capacity constraint**: No professor shall supervise more students than their research capacity.
@@ -50,7 +57,8 @@ With the two aspects above, we introduce the following expression.
 $$c_{i,j} = {p_{i,j} + q_{i,j} + |p_{i,j} - q_{i,j}|}$$
 
 The result is quite promising. We can observe that the model tries to choose as best pairs as possible.
-![[fig1.png]]
+
+![Figure 1](./assets/fig1.png)
 
 The quality of allocation, based on the data, seems decent; but we decided to try a few more expressions. We first tried a concept that we call professor/student score. These are calculated as follows.
 $$ S_i = {\sum_j q_{i,j} \over n} \hspace{1cm} \forall i\in \mathbb{I}$$
@@ -60,7 +68,7 @@ Using the above concepts, we then introduce the following expression.
 $$ c_{i,j} = S_i + S^\prime_j+|S_i - S^\prime_j|+p_{i,j} + q_{i,j}+|p_{i,j} - q_{i,j}|$$
 
 We then obtained the following results.
-![[fig2.png]]
+![figure 2](./assets/fig2.png)
 
 This was to allocate more popular students with more popular professors. Meaning, if two scores are equal in two allocations, then professor and student scores will determine the decision and the model will prioritize the more popular professor and allocate the student to them. As a result, we can see improvements in columns 1, 6 and 9, but there was also worse allocations in columns 12 and 14. However, the trade off is reasonable since pairs $(1,1), (1,2), (3,1)$ are present in the new results.
 
@@ -73,7 +81,7 @@ We then extended the expression in the following way.
 
 $$  c_{i,j} = S_i + S^\prime_j+|S_i - S^\prime_j|+w\cdot p_{i,j} + w^\prime\cdot q_{i,j}+|p_{i,j} - q_{i,j}| $$
 
-![[fig3.png]]
+![Figure 3](./assets/fig3.png)
 
 Even though the last objective function has a slight advantage over the previous one, (pair (2, 1) is an improvement but (2, 3) is a deterioration) the improvement is not significant.
 
@@ -129,7 +137,7 @@ p_{i^{'}, j^{'} }\le p_{i, j^{'}}\\
 
 Using the proposed model, we obtain the following results. As we can see this approach achieves some improvement over the previous one. It can be seen that the number of (1,1) pairs has increased at the cost of the increase of some worse pair allocations.
 
-![[fig4.png]]
+![](./assets/fig4.png)
 
 ---
 
