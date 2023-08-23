@@ -1,7 +1,7 @@
 # Preference Based Allocation Problem (Stable Marriage Problem)
 
-**Combinatorial Optimization Course Project, Dr. Farnaz Hooshmand Khaligh**
-Maryam Sadeghi, Ali Mehrabi
+**Combinatorial Optimization Course Project, Dr. Farnaz Hooshmand Khaligh**  
+Maryam Sadeghi, Ali Mehrabi  
 Amirkabir University of Technology, Spring 2023
 
 ---
@@ -30,7 +30,7 @@ First, we will write common model components and then build on them in later sec
 >
 >### Variables
 >
-> *(Binary)*: $\delta_{i,j} = \left \{ \begin{array}{cl} 1 & : \text{ if professor }i \text{ and student }j \text{ work together} \\0 & : \text{ o.w.}\end{array} \right.$  
+> *(Binary)*: $\delta_{i,j} = \begin{cases} 1 & : \text{ if professor }i \text{ and student }j \text{ work together} \\0 & : \text{ o.w.}\end{cases}.$  
 >
 >  ---
 >  ### Constraints
