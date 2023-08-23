@@ -7,9 +7,9 @@ Amirkabir University of Technology, Spring 2023
 ---
 
 > ### Dependencies
-> *This project requires `numpy`, `pnadas`, `pyomo` and `glpk` solver. You can install them using*  
+> *This project requires `numpy`, `pnadas`, `prettytable`, `pyomo` and `glpk` solver. You can install them using*  
 > ```bash
-> $ conda install numpy pandas
+> $ conda install numpy pandas prettytable
 > $ conda install -c conda-forge pyomo glpk
 > ```
 
