@@ -107,8 +107,8 @@ Therefore, upon violation, $u_{i,j} \gt 0$. However, we know from (Constraint 2)
 
 #### Soft Constraint 2
 
-$$\delta _{i j} =1 \implies \delta_{i j^{'}}+\sum_{\substack{
-i^{'} \\ p_{i^{'}, j^{'} }\le p_{i, j^{'}} \\ }} \delta_{i^{'} j^{'}} =1 \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
+$$\delta _{i j} =1 \implies \delta_{i j^{'}}+\sum_{
+i^{'} , p_{i^{'}, j^{'} }\le p_{i, j^{'}}} \delta_{i^{'} j^{'}} =1 \hspace{1cm} \forall i,j,j^\prime,p_{i j^{'} }\le p_{i j}$$
 
 Consider $\delta_{i,j}=1$ which means student $i$ is allocated to professor $j$. This is a good allocation if all other students $j^\prime$ who were given higher priority by the professor hold in either of the following conditions:
 1. The student $j^\prime$ will be allocated to the same professor. This term is crucial if we want to write a general model that works on non heterogenous attributes for the professors or the students. i.e. dynamic capacity for the professors
