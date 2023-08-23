@@ -30,13 +30,13 @@ First, we will write common model components and then build on them in later sec
 >
 >### Variables
 >
->*(Binary)*: $\delta_{i,j} = \left \{ \begin{array}{cl} 1 & : \text{ if professor }i \text{ and student }j \text{ work together} \\0 & : \text{ o.w.}\end{array} \right.$
+> *(Binary)*: $\delta_{i,j} = \left \{ \begin{array}{cl} 1 & : \text{ if professor }i \text{ and student }j \text{ work together} \\0 & : \text{ o.w.}\end{array} \right.$  
 >
 >  ---
 >  ### Constraints
->  1. **Research capacity constraint**: No professor shall supervise more students than their research capacity.
+>  1. **Research capacity constraint**: No professor shall supervise more students than their research capacity.  
 >  $$ \sum_j \delta_{i,j} \leq Cap_i \hspace{1cm} \forall i\in \mathbb{I}$$
->2. **Single professor per student constraint**:  Each students must be supervised by exactly one professor.
+>2. **Single professor per student constraint**:  Each students must be supervised by exactly one professor.  
 >$$\sum_i \delta_{i,j} =1 \hspace{1cm} \forall j\in \mathbb{J}$$
 
 ---
