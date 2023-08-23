@@ -61,8 +61,11 @@ The result is quite promising. We can observe that the model tries to choose as 
 ![Figure 1](./assets/fig1.png)
 
 The quality of allocation, based on the data, seems decent; but we decided to try a few more expressions. We first tried a concept that we call professor/student score. These are calculated as follows.
+
 $$ S_i = {\sum_j q_{i,j} \over n} \hspace{1cm} \forall i\in \mathbb{I}$$
+
 $$ S^\prime_j = {\sum_i p_{i,j} \over m} \hspace{1cm} \forall j\in \mathbb{J}$$
+
 Using the above concepts, we then introduce the following expression.
 
 $$ c_{i,j} = S_i + S^\prime_j+|S_i - S^\prime_j|+p_{i,j} + q_{i,j}+|p_{i,j} - q_{i,j}|$$
