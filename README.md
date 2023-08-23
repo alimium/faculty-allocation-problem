@@ -30,7 +30,7 @@ First, we will write common model components and then build on them in later sec
 >
 >### Variables
 >
-> $\delta_{i,j} = \begin{cases} 1 & : \text{ if professor }i \text{ and student }j \text{ work together} \\0 & : \text{ o.w.}\end{cases}.$  
+> $$\delta_{i,j} = \begin{cases} 1 & : \text{ if professor }i \text{ and student }j \text{ work together} \\0 & : \text{ o.w.}\end{cases}.$$
 >
 >  ---
 >  ### Constraints
