@@ -77,7 +77,7 @@ This was to allocate more popular students with more popular professors. Meaning
 
 We also went further and introduced another extension to this expression. This was in order to prioritize allocations where either $p_{i,j}$ or $q_{i,j}$ are in the first 15% of their values. This will prioritize pairs such as $(1, 1), (1,2), (2,1), (2,2)$ and similar.  
 
-$w = 1.5$  if $p_{i,j} \geq 1.15\times\max(p_{i,j})$ else 1.
+$w = 1.5$  if $p_{i,j} \geq 1.15\times\max(p_{i,j})$ else 1.  
 $w^\prime = 1.5$  if $q_{i,j} \geq 1.15\times\max(q_{i,j})$ else 1.
 
 We then extended the expression in the following way.
