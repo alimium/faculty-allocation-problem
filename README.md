@@ -101,7 +101,7 @@ where $u_{i,j}$ and $\lambda_{i,j,j^\prime}$ are non negative integer variables.
 $$\sum_{\substack{ i^\prime \neq i \\ q_{i,j} \lt q_{i^{'},j}}} \delta_{i^{'},j} = 0 \hspace{1cm} \forall i,j$$
 In this constraint we ensure that for all students that are allocated to a professor (i.e. professor $i$) no other professor $i^\prime$ is allocated to the student where the student's priority on professor $i^\prime$ is better. In other words, we would like to allocate the first priority of that student to them. However, this might not be possible. (i.e. two students' first priority is the same professor) This will result in a violation of the constraint which we will penalize with $u_{i,j}$ as follows.
 
-$$\sum_{\substack{ i^{'} \neq i\\q_{i,j} \lt q_{i^{'},j} \\}} \delta_{i^{'},j} - u_{i,j} = 0 \hspace{1cm} \forall i,j$$
+$$\sum_{\substack{ i^{'} \neq i \\ q_{i,j} \lt q_{i^{'},j} \\ }} \delta_{i^{'},j} - u_{i,j} = 0 \hspace{1cm} \forall i,j$$
 
 Therefore, upon violation, $u_{i,j} \gt 0$. However, we know from (Constraint 2) that only one professor can be allocated to a student which means $u_{i,j} \in \set{0,1}$.
 
